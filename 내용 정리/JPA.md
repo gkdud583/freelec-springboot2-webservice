@@ -218,7 +218,7 @@ public void savePosts(){
 단순하고 반복적인 코드가 모든 테이블과 서비스 메소드에 포함되는것은 어마어마하게 귀찮고 코드가 지저분해진다.<br>
 -> JPA Auditing을 사용하자!
 
-**BaseTimeEntity**
+**BaseTimeEntity**<br>
 모든 Entity의 상위 클래스가 되어 Entity들의 createDate, modifiedDate를 자동으로 관리하는 역할을 한다.
 
 ```java
@@ -260,7 +260,9 @@ public abstract class BaseTimeEntity {
   @LastModifiedDate<br>
   조회한 Entity의 값을 변경할때 시간이 자동 저장된다.<br>
 
-**Posts**
+
+
+**Posts**<br>
 BaseTimeEntity 상속 받도록 변경
 ```java
 package com.jojoldu.book.springboot.domain.posts;
