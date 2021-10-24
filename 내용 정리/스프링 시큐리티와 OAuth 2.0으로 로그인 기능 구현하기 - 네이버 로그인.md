@@ -117,7 +117,7 @@ spring.security.oauth2.client.registration.google.scope=profile,email
 ```
 
 ### 문제2. 302 Status Code<br>
-"Posts_등록된다" 테스트 로그를 보면 302이 반환되기 떄문에 테스트가 실패했다.<br>
+"Posts_등록된다" 테스트 로그를 보면 302가 반환되기 떄문에 테스트가 실패했다.<br>
 이는 스프링 시큐리티 설정 때문에 인증되지 않은 사용자의 요청은 이동시키기 때문이다.<br>
 그래서 이런 API요청은 임의로 인증된 사용자를 추가하여 테스트 하면 된다.
 
@@ -281,7 +281,7 @@ public class PostsApiControllerTest {
 ```
 
 ### 문제3. @WebMvcTest에서 CustomOAuth2UserService를 찾을수가 없음<br>
-"hello가_리턴된다" 테스트를 확인해보면 첫 번째로 해결한 것과 동일한 메시지인 **"No qualifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"** 가 나옴<br>
+"hello가_리턴된다" 테스트를 확인해보면 첫 번째로 해결한 것과 동일한 메시지인 **"No qualifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"** 가 나온다.<br>
 1번을 통해 스프링 시큐리티 설정은 잘 작동했지만, @WebMvcTest는 CustomOAuth2UserService를 스캔하지 않았기 때문.<br>
 @WebMvcTest는 WebSecurityConfigurerAdapter, WebMvcConfigurer를 비롯한 @ControllerAdvice, @Controller를 읽는다.<br>
 즉, @Repository, @Service, @Component는 스캔 대상이 아니다.<br>
