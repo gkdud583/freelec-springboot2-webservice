@@ -11,6 +11,8 @@ import java.util.Map;
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
+    //OAuteh2 로그인 진행 시 키가 되는 필드값, Primary Key와 같은 의미
+    //구글의 경우 기본적으로 코드를 지원("sub")하지만, 네이버 카카오 등은 기본 지원하지 않는다.
     private String name;
     private String email;
     private String picture;
