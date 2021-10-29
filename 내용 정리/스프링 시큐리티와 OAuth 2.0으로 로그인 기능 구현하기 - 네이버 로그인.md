@@ -91,7 +91,7 @@ public class OAuthAttributes {
 기존 테스트에 시큐리티 적용으로 문제가 되는 부분들을 해결
 
 ### 문제1. CustomOAuth2UserService를 찾을 수 없음<br>
-"hello가_리턴된다" 테스트의 메시지를 보면 **"No qulifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"**라는 메시지가 등장함.<br>
+"hello가_리턴된다" 테스트의 메시지를 보면 **"No qulifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"** 라는 메시지가 등장함.<br>
 이는 CustomOAuth2UserService를 생성하는데 필요한 소셜 로그인 관련 설정값들이 없기 때문에 발생한다.<br>
 하지만 우리는 분명 application-oauth.properties로 추가하였음.<br>
 -> src/main 환경과 src/test 환경의 차이 때문. <br>src/main/resources/application.properties가 테스트 코드를 수행할때도 적용되는 이유는 test에 application.properties가 없으면 main의 설정을 그대로 가져오기 때문.
@@ -117,7 +117,7 @@ spring.security.oauth2.client.registration.google.scope=profile,email
 ```
 
 ### 문제2. 302 Status Code<br>
-"Posts_등록된다" 테스트 로그를 보면 302이 반환되기 떄문에 테스트가 실패했다.<br>
+"Posts_등록된다" 테스트 로그를 보면 302가 반환되기 떄문에 테스트가 실패했다.<br>
 이는 스프링 시큐리티 설정 때문에 인증되지 않은 사용자의 요청은 이동시키기 때문이다.<br>
 그래서 이런 API요청은 임의로 인증된 사용자를 추가하여 테스트 하면 된다.
 
@@ -281,7 +281,7 @@ public class PostsApiControllerTest {
 ```
 
 ### 문제3. @WebMvcTest에서 CustomOAuth2UserService를 찾을수가 없음<br>
-"hello가_리턴된다" 테스트를 확인해보면 첫 번째로 해결한 것과 동일한 메시지인 **"No qualifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"**가 나옴<br>
+"hello가_리턴된다" 테스트를 확인해보면 첫 번째로 해결한 것과 동일한 메시지인 **"No qualifying bean of type 'com.jojoldu.book.springboot.config.auth.CustomOAuth2UserService'"** 가 나온다.<br>
 1번을 통해 스프링 시큐리티 설정은 잘 작동했지만, @WebMvcTest는 CustomOAuth2UserService를 스캔하지 않았기 때문.<br>
 @WebMvcTest는 WebSecurityConfigurerAdapter, WebMvcConfigurer를 비롯한 @ControllerAdvice, @Controller를 읽는다.<br>
 즉, @Repository, @Service, @Component는 스캔 대상이 아니다.<br>
