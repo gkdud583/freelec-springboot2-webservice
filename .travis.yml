@@ -19,7 +19,7 @@ script: "./gradlew clean build"
 
 before_deploy:
   - zip -r freelec-springboot2-webservice *
-  - mkdir -p before-deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성
+  - mkdir -p deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성
   - mv freelec-springboot2-webservice.zip deploy/freelec-springboot2-webservice.zip
 
 deploy:
